@@ -1,0 +1,29 @@
+<h1>Fliers#create</h1>
+<p>Find me in app/views/fliers/new.html.erb</p>
+
+<%= form_for @flier, :url => {:action => :create} do |f| %>
+
+
+<%= f.label :title %>
+<%= f.text_field :title %>
+<br/>
+<br/>
+<%= f.label :tag, 'Tagline' %>
+<%= f.text_field :tag, :size => '40' %>
+<br/>
+<br/>
+<%= f.label :description, 'Description' %>
+<%= f.text_area :description, :size => '25 x 6' %>
+<br/>
+<br/>
+<%= f.label :start_time, 'Start Time' %>
+<%= f.datetime_select :start_time %>
+<br/>
+<br/>
+<%= f.label :end_time, 'Start Time' %>
+<%= f.datetime_select :end_time %>
+<br/>
+<br/>
+<%= f.hidden_field :community_id, :value => current_user.community_id %>
+<%= f.submit %>
+<% end %>

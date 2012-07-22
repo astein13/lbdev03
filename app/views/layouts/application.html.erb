@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lbdevelopmentv03</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+  <% if current_user %>
+  <p> <%= image_tag current_user.image_url %> <br/>
+   Signed in as <%= current_user.fname %> <%=current_user.lname %> <br/></p>
+  <%= link_to 'Liveboard', liveboard_path %> | 
+  <%= link_to 'Create Flier', create_flier_path %> | 
+  <%= link_to 'Sign out', logout_path %>
+  <br/>
+ <%= flash[:notice] %>
+ <% end %>
+
+<%= yield %>
+
+</body>
+</html>
