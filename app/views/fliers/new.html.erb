@@ -1,7 +1,7 @@
-<h1>Fliers#create</h1>
-<p>Find me in app/views/fliers/new.html.erb</p>
+<h2> Create flier </h2>
 
-<%= form_for @flier, :url => {:action => :create} do |f| %>
+<%= form_for @flier, :url => {:action => :create},
+  :html => {:multipart => true} do |f| %>
 
 
 <%= f.label :title %>
@@ -20,10 +20,18 @@
 <%= f.datetime_select :start_time %>
 <br/>
 <br/>
-<%= f.label :end_time, 'Start Time' %>
+<%= f.label :end_time, 'End Time' %>
 <%= f.datetime_select :end_time %>
 <br/>
 <br/>
 <%= f.hidden_field :community_id, :value => current_user.community_id %>
+<br/>
+<br/>
+<%= f.file_field :image %>
+<br/>
+<br/>
+<%= f.select :privacy_status, options = {'Public' => '1', 'Private' => '0'} %>
+<br/>
+<br/>
 <%= f.submit %>
 <% end %>

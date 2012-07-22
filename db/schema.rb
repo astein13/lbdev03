@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722211213) do
+ActiveRecord::Schema.define(:version => 20120722225222) do
 
   create_table "fliers", :force => true do |t|
     t.string   "title"
-    t.string   "image_url"
+    t.string   "image_uid"
     t.string   "tag"
     t.string   "description"
     t.datetime "start_time"
@@ -23,9 +23,10 @@ ActiveRecord::Schema.define(:version => 20120722211213) do
     t.string   "category"
     t.string   "group"
     t.string   "community_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "creator_id"
+    t.string   "privacy_status"
   end
 
   create_table "users", :force => true do |t|
