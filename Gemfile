@@ -13,6 +13,7 @@ gem 'rake'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.12'
 
+
 group :development do
   gem 'rspec-rails'
 end
