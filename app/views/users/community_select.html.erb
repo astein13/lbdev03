@@ -1,5 +1,8 @@
 <%= form_for(@user) do |f| %>
 <%= f.label :community_id, 'Community' %>
-<%= f.select :community_id, options = {'Community' => '0'} %>
+<%= f.select :community_id, options = {'Community' => '', 
+                                       'Amherst College' => '1',
+                                      'University of Rochester' => '2',
+                                        'Macalester College' => '3'} %>
 <%= f.submit%>
 <% end %>
