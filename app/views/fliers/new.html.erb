@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+      <head>
+        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+        <%= render 'layouts/header' %>
+      </head>
+      <div id ="body">
+
+            </br></br></br></br>
+
+            <div class="container">
+              <div id="newborder">
+                <div id="crfldata">
+
+                    <h1> Create Flier </h1>
+
+                      </br></br>
+
+                    <%= form_for @flier, :url => {:action => :create},
+                      :html => {:multipart => true} do |f| %>
+                    <%= f.label 'Upload an Image' %>
+                    <%= f.file_field :image %>
+                    <br/>
+                    <br/>
+                    <div id="crfltitle">
+                        <%= f.label :title%>
+                        <%= f.text_field :title%>
+                    </div>
+                     <div id="crflchannel">
+                        <%= f.label :channel_id %>
+                        <%= f.select :channel_id, options ={'Arts' => '1',
+                                        'Food' => '2',
+                                        'Lecture' => '3',
+                                        'Local' => '4',
+                                        'Nightlife' => '5',
+                                        'Sports' => '6'}%>
+                    </div>
+                    <div id="crflprivacy">
+                        <%= f.label 'Privacy Status' %>
+                        <%= f.select :privacy_status, options = {'Public' => '1', 'Private' => '0'} %>
+                    </div>
+                    <div id="crfldateinput">
+                        <%= f.label :date%>
+                        <!-- dateinput styling -->
+                            <link rel="stylesheet" type="text/css" href="pages.css.scss.erb"/>
+                            <input type="date" name="fldate" />
+
+                            <script type="text/javascript">
+                                $(":date").dateinput({
+                                    format: 'dddd dd, mmmm yyyy',
+                                    offset: [0, 7],
+                                    speed: 'fast'
+                                });
+                            </script>
+                    </div>
+                    <div id="crfltagline">
+                        <%= f.label :tag, 'Tagline' %>
+                        <%= f.text_field :tag, :class => 'flytag' %>
+                    </div>
+                    <br/>
+                    <div id="crfldescription">
+                        <%= f.label :description, 'Description' %>
+                        <%= f.text_area :description, :class => 'flydesc' %>
+                    </div>
+                    <br/>
+                    <%= f.hidden_field :community_id, :value => current_user.community_id %>
+                    <br/>
+                    <%= f.submit %>
+                    <% end %>
+
+                 </div>
+              </div>
+            </div>
+      </div>
+      <div id="footer"><%= render 'layouts/footer' %></div>
+</html>

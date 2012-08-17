@@ -1,0 +1,9 @@
+            <p>
+            My friends:
+            <br/>
+            <% @friends.each do |friend| %>
+              <%= image_tag friend.image_url %>
+              <%= friend.fname+" "+friend.lname %>
+              <br/>
+            <% end %>
+            </p>

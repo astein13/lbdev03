@@ -1,0 +1,15 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= form_for(organization) do |f| %>
+<%= f.label :name%>
+<%= f.text_field :name %>
+<%= f.label :email %>
+<%= f.text_field :email %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<br/>
+<%= f.submit "Register", :controller => 'Organizations', :action => 'create', class: "btn" %>
+<% end %>

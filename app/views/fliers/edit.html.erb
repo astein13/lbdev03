@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <%= render 'layouts/header' %>
+    </head>
+
+    <body>
+
+        </br></br></br></br>
+
+        <div class="container">
+          <div class="newborder">
+
+        <h1> Create Flier </h1>
+
+          </br></br>
+
+        <%= form_for @flier, :url => {:action => :update, :flier_id => params[:flier_id]} do |f| %>
+        <%= f.hidden_field :community_id, :value => current_user.community_id %>
+        <%= f.hidden_field :creator_id, :value => current_user.id %>
+        <%= f.label :channel_id %>
+        <%= f.select :channel_id, options ={'Arts' => '1',
+                'Food' => '2',
+                'Lecture' => '3',
+                'Local' => '4',
+                'Nightlife' => '5',
+                'Sports' => '6'}%>
+        <br/>
+        <br/>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+        <br/>
+        <br/>
+        <%= f.label :tag, 'Tagline' %>
+        <%= f.text_field :tag, :size => '40' %>
+        <br/>
+        <br/>
+        <%= f.label :description, 'Description' %>
+        <%= f.text_area :description, :size => '25 x 6' %>
+        <br/>
+        <br/>
+        <%= f.label :start_time, 'Start Time' %>
+        <%= f.datetime_select :start_time %>
+        <br/>
+        <br/>
+        <%= f.label :end_time, 'End Time' %>
+        <%= f.datetime_select :end_time %>
+
+        <br/>
+        <br/>
+        <%= f.file_field :image %>
+        <br/>
+        <br/>
+        <%= f.select :privacy_status, options = {'Public' => '1', 'Private' => '0'} %>
+        <br/>
+        <br/>
+        <%= f.submit %>
+        <% end %>
+
+        </div>
+
+          </br></br></br></br></br>
+
+            <%= render 'layouts/footer' %>
+
+       </div>
+    </body>
+</html>

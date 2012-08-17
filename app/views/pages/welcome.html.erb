@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/header' %>
+  </head>
+  <div id="body">
+      <div class="container">
+
+        </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+
+        <%= yield %>
+        <%= image_tag 'flier_logo.png', class: "flierlogo" %>
+
+        <div class="signin">
+                <h1>Welcome to Liveboard.</h1>
+                <div class="logdesc">Re-discover your local community.</div>
+                <a href="../auth/facebook" class="fbbtn"></a>
+        </div>
+                                 </br></br></br></br></br></br></br></br></br></br>
+
+        <%= render :partial => "organizations/login"  %>
+
+        <%= render :partial => "organizations/register", :locals => {:organization => @organization} %>
+
+        </div>
+  </div>
+  <div id="footer"><%= render 'layouts/footer' %></div>
+</html>

@@ -1,0 +1,13 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= form_tag sessions_org_create_path do %>
+<%= label_tag :email %>
+<%= text_field_tag :email, params[:email] %>
+<%= label_tag :password %>
+<%=  password_field_tag :password %>
+<br/>
+<%= submit_tag "Log-in", :controller => 'Sessions', :action => 'org_create', class: "btn"  %>
+<% end %>

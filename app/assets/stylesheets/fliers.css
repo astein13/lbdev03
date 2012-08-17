@@ -1,0 +1,75 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+/* Show Fliers */
+
+.showimg {
+    position: relative;
+    margin-left: 5px;
+    height: 300px;
+    width: 900px;
+    padding: 5px;
+    outline: 1px #cacaca solid;
+}
+#newborder {
+    border: 1px solid #cacaca;
+    width: 920px;
+    padding:  10px;
+}
+#showbtnlist {
+
+    width: 800px;
+    height: 50px;
+    border:  1px solid #000;
+}
+.showbtns {
+    display: inline-block;
+    width: 100px;
+    position: relative;
+    margin-left: 50px;
+}
+
+
+/* Create Fliers */
+
+#crfldata {
+    padding:25px;
+}
+#crfltitle {
+    display: inline-block;
+    width: 200px;
+}
+#crflchannel {
+    display: inline-block;
+    margin-left: 90px;
+    width: 150px;
+}
+#crflprivacy {
+    display: inline-block;
+    margin-left: 140px;
+    width: 150px;
+}
+
+#crfldateinput {
+    display: inline-block;
+}
+#crfltagline {
+    display: inline-block;
+    margin-left: 59px;
+}
+.flytag {
+    position: absolute;
+    width: 508px;
+}
+#crfldescription {
+    display:inline-block;
+}
+.flydesc {
+    width: 800px;
+    height: 100px;
+}
+.flytime {
+    width: 60px;
+}

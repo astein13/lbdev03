@@ -1,0 +1,27 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+/* Community Select */
+
+.combox {
+    margin-top: 200px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.comtit {
+    font-size: 1.4em;
+    line-height: 1.4em;
+    float: left;
+    margin-right:20px;
+    margin-top:5px;
+}
+.comsel {
+    float: left;
+    bottom:0px;
+}
+.commhighlight ul li a:hover  {
+    background-color: #9b1d1d;
+}

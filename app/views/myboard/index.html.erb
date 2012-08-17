@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/header' %>
+  </head>
+  <body>
+
+  <div class="container">
+
+        <br/><br/><br></br><br/><br/>
+
+    <h1>My Board</h1>
+    <h2>Fliers that I have added:</h2>
+
+        <% unless @added_fliers.empty? %>
+          <% @added_fliers.each do |flier| %>
+            <br/>
+            <%= image_tag flier.image.url(:thumb) %>
+            <br/>
+            <%= flier.title %><br/>
+            <%= button_to 'Remove from My Board', myboard_delete_flier_path(:flier_id =>flier.id) %>
+          <% end %>
+
+        <% else %>
+          <br/>
+          No fliers here yet.  Try checking out the Liveboard.
+          <br/><br/>
+        <%end%>
+
+                Fliers that I have created:
+        <% unless @created_fliers.empty? %>
+          <% @created_fliers.each do |flier| %>
+            <br/>
+            <% @image =  image_tag flier.image.url(:thumb) %>
+            <%= link_to @image, show_flier_path(:id => flier.id) %>
+            <br/>
+            <%= flier.title %><br/>
+           
+            <%= button_to 'Edit flier', :controller => "fliers", :action => "edit", :flier_id => flier.id %>
+            <%= button_to 'Invite friends', invite_path(:flier_id => flier.id) %>
+            <%= button_to 'Delete this flier', {:controller => "fliers",
+                                               :action => "destroy",
+                                               :flier_id => flier.id},
+                                               :confirm => 'Are you sure?'%>
+         
+          <% end %>
+
+        <% else %>
+          <br/>
+          No fliers here yet.  Try checking out the Liveboard.
+          <br/><br/>
+        <%end%>
+
+
+
+        <% unless @invitations.empty? %>
+        <p>Invitations:
+          <% @invitations.each do |flier| %>
+            <br/>
+            <%= image_tag flier.image.url(:thumb) %>
+            <br/>
+            <%= flier.title %><br/>
+            <%= button_to 'Add to My Board', myboard_add_flier_path(:flier_id =>flier.id) %>
+          <% end %>
+         <% end %>
+
+        </p>
+
+
+    <%= render 'layouts/friends' %>
+    <%= render 'layouts/footer' %>
+
+  </div>
+
+</body>
+</html>

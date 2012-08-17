@@ -1,0 +1,37 @@
+<html>
+  <head>
+        <%= render 'layouts/header' %>
+  </head>
+  <div id="body">
+        </br></br></br></br></br></br>
+
+        <div class="container">
+          <div id="newborder">
+
+
+            <h1><%= @flier.title %></h1><h2><%= @flier.tag %></h2>
+            <%= image_tag @flier.image.url, class: "showimg" %>
+            <div class="desc"> <h3><%= @flier.description %> </h3></br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+            in culpa qui officia deserunt mollit anim id est laborum.</div>
+
+              </br></br>
+
+              <div id="showbtnlist">
+                <%= button_to 'Add to MyBoard', myboard_add_flier_path(:flier_id => @flier.id), class: "btn showbtns" %>
+                <%= button_to 'Edit flier', :controller => "fliers", :action => "edit", :flier_id => @flier.id, class: "btn showbtns" %>
+                <%= button_to 'Invite friends', invite_path(:flier_id => @flier.id), class: "btn showbtns" %>
+                <%= button_to 'Delete this flier', { :controller => "fliers",
+                                                   :action => "destroy",
+                                                   :flier_id => @flier.id},
+                                                   :confirm => 'Are you sure?', class: "btn showbtns" %>
+              </div>
+
+            </div>
+        </div>
+    </div>
+  <div id="footer"><%= render 'layouts/footer' %></div>
+</html>
