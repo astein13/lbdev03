@@ -5,7 +5,7 @@ class LiveboardController < ApplicationController
     @community = Community.find_by_id(@community_id)
     @channels = Channel.all
 
-    
+    if session[:user_id] #check if this is a user or an organization, if user do the following
     # initiate an array to hold the user's myfliers that will be displayed on liveboard
     @myfliers_for_liveboard = []
     @fliers_for_liveboard = []
@@ -34,4 +34,14 @@ class LiveboardController < ApplicationController
     @channels = Channel.all
 
   end
+
+  if session[:organization_id] #if this is an organization, load all fliers
+    @organization = Organization.find(session[:organization_id])
+    @fliers_for_org_liveboard = Flier.find_all_by_community_id(@community.id)
+    @fliers_for_org_liveboard.sort!{|a,b| b.added_count <=> a.added_count}
+    @fliers_not_to_add = OrganizationFlier.find_all_by_organization_id(current_user.id)
+    @fliers_for_adding = @fliers_for_org_liveboard - @fliers_not_to_add
+  end
+
+end
 end

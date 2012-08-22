@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
 #for organization
 
   def org_create
-    organization = Organization.find_by_email(params[:email])
+    @email = params[:email]
+    if organization = Organization.find_by_email(params[:email])
       if organization && organization.authenticate(params[:password])
         session[:organization_id] = organization.id
         redirect_to liveboard_path
@@ -26,11 +27,15 @@ class SessionsController < ApplicationController
         redirect_to root_url, notice: "An organization is registered with this email, but
                                        the password that you submitted is incorrect."
       end
+    else redirect_to :controller => "organizations", :action => "register",
+         :email => @email
 
   end
-
+  end
   def org_destroy
-    
+    session[:organization_id] = nil
+    redirect_to root_url
   end
 
 end
+

@@ -10,6 +10,7 @@ class Flier < ActiveRecord::Base
     validates :privacy_status, :presence => true
 
   has_many :myfliers, :dependent => :delete_all
+  has_many :OrganizationFliers, :dependent => :delete_all
   belongs_to :communities, :foreign_key => "community_id"
   belongs_to :channels, :foreign_key => "channel_id"
 

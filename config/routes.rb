@@ -1,5 +1,15 @@
 Lbdevelopmentv03::Application.routes.draw do
 
+  get "guestlist/add"
+
+  get "guestlist/remove"
+
+  get "billboard/index"
+
+  get "organization_fliers/add"
+
+  get "organization_fliers/delete"
+
   resources :organizations
 
   get "realtime/subscription"
@@ -76,9 +86,12 @@ Lbdevelopmentv03::Application.routes.draw do
   match 'help', to: 'pages#help'
   match 'about', to: 'pages#about'
   match 'facebook_update', to: 'facebook_updates#create', as: 'facebookupdates'
+  
+
+  #organizations
   match 'sessions_org_create', to: 'sessions#org_create'
-  
-  
+  match 'org_logout', to: 'sessions#org_destroy'
+  match 'create_organization', to: 'organizations#register'
 
   #channels matches
   match 'channels/arts', to: "channels#index", :channel_id => "1"
@@ -102,8 +115,10 @@ Lbdevelopmentv03::Application.routes.draw do
   match 'invite', to: 'myfliers#invite'
   match 'edit_flier', to: 'fliers#edit'
   
-
-  resources :facebook_updates, :only=>[:create, :index]
+  #organization_flier action matches
+  match 'org_add_flier', to: 'organization_fliers#add'
+  match 'org_delete_flier', to: 'organization_fliers#delete'
+  
 
 
 

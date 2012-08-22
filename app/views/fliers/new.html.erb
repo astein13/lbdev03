@@ -14,7 +14,7 @@
 
                     <h1> Create Flier </h1>
 
-                      </br></br>
+                      <br/><br/>
 
                     <%= form_for @flier, :url => {:action => :create},
                       :html => {:multipart => true} do |f| %>
@@ -64,6 +64,7 @@
                     </div>
                     <br/>
                     <%= f.hidden_field :community_id, :value => current_user.community_id %>
+                    <%= f.hidden_field :creator_id, :value => current_user.id  %>
                     <br/>
                     <%= f.submit %>
                     <% end %>

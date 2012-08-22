@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/header' %>
   </head>
+  <% if session[:user_id] %>
   <body>
 
   <div class="container">
@@ -13,22 +14,22 @@
         <br/><br/><br></br><br/><br/>
 
     <h1>My Board</h1>
-    <h2>Fliers that I have added:</h2>
 
-        <% unless @added_fliers.empty? %>
-          <% @added_fliers.each do |flier| %>
-            <br/>
-            <%= image_tag flier.image.url(:thumb) %>
-            <br/>
-            <%= flier.title %><br/>
-            <%= button_to 'Remove from My Board', myboard_delete_flier_path(:flier_id =>flier.id) %>
-          <% end %>
-
-        <% else %>
+      <%unless @added_fliers.empty?%>
+        <% @channels.each do |channel| %>
+    <h2><%= channel.channel if @flier_channels.include?(channel.id)%></h2>
           <br/>
-          No fliers here yet.  Try checking out the Liveboard.
-          <br/><br/>
-        <%end%>
+            <% @added_fliers.each do |flier|  %>
+              <%= flier.title  if flier.channel_id.to_i == channel.id  %>
+                
+                <br/>
+              
+           <% end %>
+          
+       <%end%>
+      <%end%>
+
+
 
                 Fliers that I have created:
         <% unless @created_fliers.empty? %>
@@ -70,10 +71,15 @@
         </p>
 
 
-    <%= render 'layouts/friends' %>
+    <%=  render 'layouts/friends' %>
     <%= render 'layouts/footer' %>
 
   </div>
 
 </body>
+<%end%>
+<% if session[:organization_id] %>
+
+
+<%end%>
 </html>

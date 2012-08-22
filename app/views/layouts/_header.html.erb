@@ -38,12 +38,21 @@
         <div class="pull-right">
 
            <ul class="nav nav-pills pull-right">
-                <% if current_user %>
+             
+                <% if session[:user_id] %>
                 <li><%=  link_to current_user.fname + " " + current_user.lname, myboard_path %></li>
                 <li> <%= link_to 'Create Flier', create_flier_path %></li>
                 <li> <%= link_to 'Sign Out', logout_path %> </li>
                 <li class="userimg"><%= image_tag current_user.image_url %></li>
-                <% else %>
+                
+                <% end %>
+
+                 <% if session[:organization_id] %>
+                <li><%=  link_to current_user.name, myboard_path %></li>
+                <li> <%= link_to 'Create Flier', create_flier_path %></li>
+                <li> <%= link_to 'Sign Out', org_logout_path %> </li>
+                
+             
                 <% end %>
            </ul>
 

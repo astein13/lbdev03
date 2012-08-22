@@ -16,13 +16,23 @@ class FliersController < ApplicationController
     @channels = Channel.all
      @flier = Flier.create!(params[:flier])
      @users = User.find_all_by_community_id(current_user.community_id)
+
+    #create myfliers for each user in the community
      @users.each do |user|
       @myflier = Myflier.create!(:user_id => user.id, :flier_id => @flier.id, :attending_status => nil, :myscore => 100)
      end
-     @creator_myflier = Myflier.find_by_user_id_and_flier_id(current_user.id, @flier.id)
-     @creator_myflier.update_attribute(:attending_status, '9')
-     redirect_to :controller => :myfliers, :action => :invite, :flier_id => @flier.id
-    
+
+    #if user is a person....
+     if session[:user_id]
+      @creator_myflier = Myflier.find_by_user_id_and_flier_id(current_user.id, @flier.id)
+      @creator_myflier.update_attribute(:attending_status, '9')
+      redirect_to :controller => :myfliers, :action => :invite, :flier_id => @flier.id
+     end
+
+    #if user is an organization
+    if session[:organization_id]
+      @creator_organizationflier = OrganizationFlier.create!(:organization_id => current_user.id, :flier_id=>@flier.id, :attending_status => '9')
+    end
 
   end
   
@@ -49,7 +59,7 @@ class FliersController < ApplicationController
     @channels = Channel.all
     @flier = Flier.find_by_id(params[:flier_id])
     @creator_id = @flier.creator_id.to_i
-    unless @creator_id==current_user.id
+    unless @creator_id == current_user.id
       redirect_to :controller => "error_pages", :action => "not_your_flier"
     else
     

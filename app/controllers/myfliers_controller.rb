@@ -1,6 +1,6 @@
 class MyfliersController < ApplicationController
   def add
-    @flier = Flier.find_by_id(params[:flier_id]).addone
+    Flier.find_by_id(params[:flier_id]).addone
     @myflier = Myflier.find_by_user_id_and_flier_id(current_user.id, params[:flier_id])
     @myflier.update_attribute(:attending_status, '1')
     
