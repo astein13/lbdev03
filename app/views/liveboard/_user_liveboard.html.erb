@@ -1,0 +1,14 @@
+ <% @fliers_for_liveboard.each do |myflier| %>
+
+              <div class="fliers shadow">
+              <%= image_tag myflier.flier.image.url(:thumb), class: "flimg" %>
+              <%= link_to  myflier.flier.title, show_flier_path(:id => myflier.flier_id), class: "fltit" %>
+              <%= myflier.myscore  %>
+
+                <% if @fliers_for_adding.include?(myflier.flier) %>
+                  <%= button_to 'Add to MyBoard', myboard_add_flier_path(:flier_id => myflier.flier_id), class: "btn fladd" %>
+                <% else %>
+                  <p> Already added </p>
+                <%end%>
+          </div>
+            <%end%>
