@@ -16,7 +16,12 @@ class SessionsController < ApplicationController
   end
 
 #for organization
-
+  def registration_redirect
+    @email = flash[:email]
+    session[:organization_id] = Organization.find_by_email(@email).id
+    redirect_to liveboard_path
+  end
+  
   def org_create
     @email = params[:email]
     if organization = Organization.find_by_email(params[:email])

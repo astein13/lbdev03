@@ -8,7 +8,7 @@ gem 'bootstrap-sass'
 
 gem 'omniauth-facebook'
 gem 'eventmachine', '1.0.0.rc.4'
-gem 'thin', '1.3.1'
+#gem 'thin', '1.3.1'
 gem 'jquery-rails'
 gem 'rake'      # '>= 0.8.7'
 gem 'rack-cache', :require => 'rack/cache'
@@ -21,6 +21,8 @@ gem 'pg_search'
 gem "paperclip", "~> 3.0"
 gem 'client_side_validations'
 gem 'bcrypt-ruby'
+gem 'dynamic_form'
+gem 'unicorn'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -6,14 +6,15 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(params[:organization])
-    if @organization.save!
-      redirect_to liveboard_path, notice: "Thank you for joining!"
-
-    end
+      if @organization.save!
+        redirect_to sessions_redirect_path, :flash => { :email => @organization.email }
+      end
+    
+    
   end
 
   def register
-    @organization = Organization.new(params[:organization])
+    @organization = Organization.new
     @email = params[:email]
   end
 

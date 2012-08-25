@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
-  attr_accessible :community_id, :fbid, :fname, :image_url, :lname, :oauth_exp, :oauth_token, :provider
+  attr_accessible :community_id, :fbid, :fname, :image_url, :lname,
+                  :oauth_exp, :oauth_token, :provider, :channel_id
 
-  has_many :myfliers
+  has_many :myfliers,
+           :order => :myscore
+
+
+  has_many :fliers_for_liveboard, :through => :myfliers
+
+           
 
   has_many :fliers, :through => :myfliers
   
@@ -23,11 +30,35 @@ class User < ActiveRecord::Base
   has_many :public_added_fliers, :through => :myfliers,
            :class_name =>"Flier",
            :source =>:flier,
-           :conditions => ['attending_status=?', '1'],
-           :conditions => ['privacy_status=?', '1']
+           :conditions => ['attending_status=?', '1']
+
+  has_many :added_academic_fliers, :through => :myfliers,
+           :class_name => "Flier",
+           :source => :flier,
+           :conditions => "channel_id = 1" and "attending_status=1"
+
+  has_many :added_arts_fliers, :through => :myfliers,
+           :class_name => "Flier",
+           :source => :flier,
+           :conditions => 'channel_id = 2' and 'attending_status = 1'
+
+  has_many :added_nightlife_fliers, :through => :myfliers,
+           :class_name => "Flier",
+           :source => :flier,
+           :conditions => 'channel_id = 3' and 'attending_status= 1'
+         
+  has_many :added_sports_fliers, :through => :myfliers,
+           :class_name => "Flier",
+           :source => :flier,
+           :conditions => 'channel_id= 4' and 'attending_status= 1'
+
+
 
   has_many :friendships
-  has_many :friends_ids, :through => :friendships
+  
+  has_many :friends, :through => :friendships,
+           :class_name => "User",
+           :source => :users
 
 
   belongs_to :community, :foreign_key => "community_id"

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js">$('.dropdown-toggle').dropdown()</script>
+    
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -13,15 +13,15 @@
 organization by filling out this form.</p>
 
 
-<%= form_for(@organization) do |f| %>
+<%= form_for @organization, :html => {:multipart => true}, :validate => true do |f| %>
 <%= f.label :email %>
 <%= f.text_field  :email, :value => @email  %>
- <%= f.label :community_id, 'Select Community:', class: "comtit" %>
+<%= f.label :community_id, 'Select Community:' %>
 <%= f.select :community_id, options = {'Community' => '',
                                        'Amherst College' => '1',
                                        'University of Rochester' => '2',
                                        'Macalester College' => '3'}, class: "comsel" %>
-<%= f.label :name%>
+<%= f.label :name %>
 <%= f.text_field :name %>
 <%= f.label :password %>
 <%= f.password_field :password %>

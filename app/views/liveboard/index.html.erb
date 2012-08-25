@@ -16,36 +16,10 @@
 
         <h1> What's hap'nin, right now. </h1>
           <% if session[:user_id] %>
-            <% @myfliers_for_liveboard.each do |myflier| %>
-
-              <div class="fliers shadow">
-              <%= image_tag Flier.find_by_id(myflier.flier_id).image.url(:thumb), class: "flimg" %>
-              <%= link_to  Flier.find_by_id(myflier.flier_id).title, show_flier_path(:id => myflier.flier_id), class: "fltit" %>
-              <%= myflier.myscore %>
-            
-                <% if @fliers_for_adding.include?(Flier.find_by_id(myflier.flier_id)) %>
-                  <%= button_to 'Add to MyBoard', myboard_add_flier_path(:flier_id => myflier.flier_id), class: "btn fladd" %>
-                <% else %>
-                  <p> Already added </p>
-                <%end%>
-          </div>
-            <%end%>
+            <%= render 'user_liveboard' %>
            <%end%>
           <% if session[:organization_id] %>
-            <% @fliers_for_org_liveboard.each do |flier| %>
-
-              <div class="fliers shadow">
-              <%= image_tag flier.image.url(:thumb), class: "flimg" %>
-              <%= link_to  flier.title, show_flier_path(:id => flier.id), class: "fltit" %>
-             
-
-                <% if @fliers_for_adding.include?(flier) %>
-                  <%= button_to 'Add to my Billboard', org_add_flier_path(:flier_id => flier.id), class: "btn fladd" %>
-                <% else %>
-                 
-                <%end%>
-          </div>
-           <% end%>
+            <%= render 'org_liveboard' %>
            <% end%>
     
          

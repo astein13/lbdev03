@@ -14,24 +14,45 @@
         <br/><br/><br></br><br/><br/>
 
     <h1>My Board</h1>
-
-      <%unless @added_fliers.empty?%>
-        <% @channels.each do |channel| %>
-    <h2><%= channel.channel if @flier_channels.include?(channel.id)%></h2>
-          <br/>
-            <% @added_fliers.each do |flier|  %>
-              <%= flier.title  if flier.channel_id.to_i == channel.id  %>
-                
-                <br/>
-              
+    <h3>Added Fliers</h3>
+    <% if current_user.added_fliers.empty? %>
+        Nothing to see here yet.  Try checking out one of the channels.
+    <%end%>
+      <%unless current_user.added_academic_fliers.empty?%>
+      <h3> Academic Fliers:</h3><br/>
+          <% current_user.added_academic_fliers.each do |flier| %>
+              <%= flier.image.url(:thumb) %>
+              <%= flier.title %>
            <% end %>
-          
        <%end%>
-      <%end%>
+
+       <%unless current_user.added_arts_fliers.empty?%>
+        <h3> Arts Fliers: </h3><br/>
+          <% current_user.added_arts_fliers.each do |flier| %>
+              <%= flier.image.url(:thumb) %>
+              <%= flier.title %>
+           <% end %>
+       <%end%>
+
+       <%unless current_user.added_nightlife_fliers.empty?%>
+          <h3> Nightlife Fliers: </h3><br/>
+          <% current_user.added_nightlife_fliers.each do |flier| %>
+              <%= flier.image.url(:thumb) %>
+              <%= flier.title %>
+           <% end %>
+       <%end%>
+
+       <%unless current_user.added_sports_fliers.empty?%>
+          <h3> Sports Fliers: </h3><br/>
+          <% current_user.added_academic_fliers.each do |flier| %>
+              <%= flier.image.url(:thumb) %>
+              <%= flier.title %>
+           <% end %>
+       <%end%>
 
 
-
-                Fliers that I have created:
+          <br/><br/>
+          <h3>Created Fliers </h3>
         <% unless @created_fliers.empty? %>
           <% @created_fliers.each do |flier| %>
             <br/>
@@ -50,8 +71,7 @@
           <% end %>
 
         <% else %>
-          <br/>
-          No fliers here yet.  Try checking out the Liveboard.
+          No fliers here yet.  Try creating one.
           <br/><br/>
         <%end%>
 

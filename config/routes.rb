@@ -90,6 +90,7 @@ Lbdevelopmentv03::Application.routes.draw do
 
   #organizations
   match 'sessions_org_create', to: 'sessions#org_create'
+  match 'sessions_redirect', to: 'sessions#registration_redirect'
   match 'org_logout', to: 'sessions#org_destroy'
   match 'create_organization', to: 'organizations#register'
 

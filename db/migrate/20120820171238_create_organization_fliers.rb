@@ -1,5 +1,5 @@
 class CreateOrganizationFliers < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :organization_fliers do |t|
       t.integer :organization_id
       t.integer :flier_id

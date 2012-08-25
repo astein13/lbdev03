@@ -4,12 +4,9 @@ class MyboardController < ApplicationController
     if session[:user_id]
       @invitations = current_user.invitations
       @created_fliers = current_user.created_fliers
-      @friends = current_user.friends
       @added_fliers = current_user.added_fliers
       @flier_channels = []
-      @added_fliers.each do |added_flier|
-       @flier_channels << added_flier.channel_id.to_i
-      end
+      
       
     
 
